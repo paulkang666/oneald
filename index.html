@@ -1,53 +1,393 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oneald 1.0</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oneald Family OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 35%),
+        linear-gradient(180deg, #020617 0%, #000000 100%);
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 28px rgba(14, 165, 233, 0.15);
+      backdrop-filter: blur(12px);
+    }
+
+    .glow-border {
+      position: relative;
+    }
+
+    .glow-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 1rem;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.8), rgba(251,191,36,0.45), rgba(59,130,246,0.6));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .scan-line {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(56, 189, 248, 0.5),
+        transparent
+      );
+      animation: scan 4s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .float-soft {
+      animation: floatSoft 6s ease-in-out infinite;
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .pulse-dot {
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% {
+        opacity: 0.45;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+
+    .carousel-card {
+      animation: imageShift 12s ease-in-out infinite;
+    }
+
+    @keyframes imageShift {
+      0%, 100% {
+        background:
+          linear-gradient(rgba(2,6,23,0.2), rgba(2,6,23,0.7)),
+          linear-gradient(135deg, #0f172a, #0369a1, #0f172a);
+      }
+      33% {
+        background:
+          linear-gradient(rgba(2,6,23,0.2), rgba(2,6,23,0.7)),
+          linear-gradient(135deg, #1e293b, #0f766e, #0f172a);
+      }
+      66% {
+        background:
+          linear-gradient(rgba(2,6,23,0.2), rgba(2,6,23,0.7)),
+          linear-gradient(135deg, #111827, #7c2d12, #0f172a);
+      }
+    }
+  </style>
 </head>
-<body class="bg-black text-white">
 
-    <!-- 导航栏 -->
-    <nav class="flex justify-between items-center px-10 py-6 border-b border-gray-800">
-        <div class="text-xl font-bold">
-            Oneald
-        </div>
-        <div class="space-x-8 text-gray-400">
-            <a href="index.html" class="text-white">首页</a>
-            <a href="family.html" class="hover:text-white">家庭</a>
-            <a href="members.html" class="hover:text-white">成员</a>
-            <a href="timeline.html" class="hover:text-white">时间轴</a>
-        </div>
-    </nav>
+<body class="text-white min-h-screen overflow-x-hidden">
 
-    <!-- 主内容 -->
-    <div class="min-h-screen flex flex-col items-center justify-center">
-        <h1 class="text-5xl font-bold mb-6">
-            Oneald 1.0
-        </h1>
-
-        <p class="text-gray-400 text-lg mb-8">
-            构建产品 · 记录时间 · 量化人生
-        </p>
-
-        <div class="grid grid-cols-3 gap-8 text-center">
-            <div>
-                <div class="text-3xl font-bold">12</div>
-                <div class="text-gray-500">产品数</div>
-            </div>
-
-            <div>
-                <div class="text-3xl font-bold">128</div>
-                <div class="text-gray-500">文章数</div>
-            </div>
-
-            <div>
-                <div class="text-3xl font-bold">365</div>
-                <div class="text-gray-500">记录天数</div>
-            </div>
-        </div>
+  <!-- 顶部导航 -->
+  <nav class="flex flex-col md:flex-row md:justify-between md:items-center px-6 md:px-10 py-5 border-b border-cyan-900/50 glass">
+    <div>
+      <div class="text-2xl font-bold tracking-wide">Oneald Family OS</div>
+      <div class="text-xs text-cyan-300 mt-1">家庭数字资产 · 小程序/PWA · 旅行记忆 · 时间记录</div>
     </div>
+
+    <div class="flex flex-wrap gap-5 md:gap-8 text-gray-300 mt-4 md:mt-0">
+      <a href="index.html" class="text-white">首页</a>
+      <a href="family.html" class="hover:text-white">家庭</a>
+      <a href="apps.html" class="hover:text-white">应用</a>
+      <a href="travel.html" class="hover:text-white">旅行</a>
+      <a href="timeline.html" class="hover:text-white">时间轴</a>
+    </div>
+  </nav>
+
+  <!-- 主体大屏 -->
+  <main class="px-4 md:px-8 py-6">
+
+    <!-- 标题区 -->
+    <section class="text-center mb-6">
+      <div class="inline-flex items-center gap-3 text-cyan-300 text-sm mb-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></span>
+        <span>Oneald 1.0 正在运行</span>
+        <span class="w-2 h-2 rounded-full bg-amber-300 pulse-dot"></span>
+      </div>
+
+      <h1 class="text-3xl md:text-5xl font-bold tracking-wide">
+        家庭数字生活大屏
+      </h1>
+
+      <p class="text-gray-400 mt-3">
+        记录使用、旅行、阅读、成长与每一次值得保存的家庭时刻
+      </p>
+    </section>
+
+    <!-- 顶部核心数据 -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="glass rounded-2xl p-5 text-center glow-border">
+        <div class="text-cyan-300 text-sm">小程序 / PWA</div>
+        <div class="text-4xl font-bold mt-2">12</div>
+        <div class="text-xs text-gray-400 mt-1">家庭工具生态</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center glow-border">
+        <div class="text-cyan-300 text-sm">家庭旅行</div>
+        <div class="text-4xl font-bold mt-2">8</div>
+        <div class="text-xs text-gray-400 mt-1">已记录旅程</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center glow-border">
+        <div class="text-cyan-300 text-sm">记录天数</div>
+        <div class="text-4xl font-bold mt-2">365</div>
+        <div class="text-xs text-gray-400 mt-1">持续沉淀</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center glow-border">
+        <div class="text-cyan-300 text-sm">内容资产</div>
+        <div class="text-4xl font-bold mt-2">128</div>
+        <div class="text-xs text-gray-400 mt-1">文章 / 照片 / 笔记</div>
+      </div>
+    </section>
+
+    <!-- 中部驾驶舱 -->
+    <section class="grid grid-cols-1 lg:grid-cols-4 gap-5">
+
+      <!-- 左侧数据 -->
+      <aside class="space-y-5">
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold mb-4 text-cyan-200">应用使用情况</h2>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>快乐一窝旅行记</span>
+                <span class="text-cyan-300">18 次</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-cyan-400 rounded-full" style="width: 78%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>清心阅读</span>
+                <span class="text-cyan-300">42 篇</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-blue-400 rounded-full" style="width: 62%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span>家庭时间轴</span>
+                <span class="text-cyan-300">12 条</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-amber-300 rounded-full" style="width: 46%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold mb-4 text-cyan-200">家庭工具状态</h2>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <span class="text-gray-400">Oneald 1.0</span>
+              <span class="text-green-400">运行中</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">旅行记录</span>
+              <span class="text-cyan-300">待扩展</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">成员档案</span>
+              <span class="text-amber-300">规划中</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">数据接入</span>
+              <span class="text-blue-300">手动阶段</span>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- 中间照片 / 视频轮播区域 -->
+      <section class="lg:col-span-2 glass rounded-2xl p-4 glow-border overflow-hidden">
+
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-bold text-cyan-200">家庭记忆轮播</h2>
+          <div class="text-xs text-gray-400">照片 / 视频 / 旅行片段</div>
+        </div>
+
+        <div class="relative h-80 md:h-96 rounded-xl overflow-hidden carousel-card float-soft">
+          <div class="absolute inset-0 bg-black/10"></div>
+
+          <div class="absolute top-0 left-0 w-full h-1 scan-line"></div>
+
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <div class="text-sm text-cyan-200 mb-3 tracking-widest">MEMORY SLIDESHOW</div>
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">
+              快乐一窝旅行记
+            </h2>
+            <p class="text-gray-200 max-w-xl leading-relaxed">
+              这里将展示家庭照片、旅行视频、重要时刻与温暖片段。
+              现在是占位轮播，后续可以替换为真实照片或视频。
+            </p>
+
+            <div class="flex gap-2 mt-8">
+              <span class="w-3 h-3 rounded-full bg-white"></span>
+              <span class="w-3 h-3 rounded-full bg-white/40"></span>
+              <span class="w-3 h-3 rounded-full bg-white/40"></span>
+            </div>
+          </div>
+
+          <div class="absolute bottom-4 left-4 right-4 flex justify-between text-xs text-gray-300">
+            <span>最近旅程：待填写</span>
+            <span>素材整理：236 张</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="bg-slate-900/80 rounded-xl p-4 text-center border border-cyan-900/40">
+            <div class="text-2xl font-bold">12</div>
+            <div class="text-xs text-gray-400 mt-1">城市</div>
+          </div>
+          <div class="bg-slate-900/80 rounded-xl p-4 text-center border border-cyan-900/40">
+            <div class="text-2xl font-bold">236</div>
+            <div class="text-xs text-gray-400 mt-1">待整理照片</div>
+          </div>
+          <div class="bg-slate-900/80 rounded-xl p-4 text-center border border-cyan-900/40">
+            <div class="text-2xl font-bold">26</div>
+            <div class="text-xs text-gray-400 mt-1">重要事件</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右侧数据 -->
+      <aside class="space-y-5">
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold mb-4 text-cyan-200">旅行情况</h2>
+
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="text-3xl font-bold">8</div>
+              <div class="text-xs text-gray-400 mt-1">旅行次数</div>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="text-3xl font-bold">12</div>
+              <div class="text-xs text-gray-400 mt-1">到访城市</div>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="text-3xl font-bold">3</div>
+              <div class="text-xs text-gray-400 mt-1">待整理</div>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="text-3xl font-bold">1</div>
+              <div class="text-xs text-gray-400 mt-1">计划中</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold mb-4 text-cyan-200">家庭成员动态</h2>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-cyan-500/30 flex items-center justify-center">家</div>
+              <div>
+                <div>家庭档案</div>
+                <div class="text-xs text-gray-400">等待完善成员信息</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-amber-500/30 flex items-center justify-center">旅</div>
+              <div>
+                <div>旅行记忆</div>
+                <div class="text-xs text-gray-400">照片与视频待接入</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-blue-500/30 flex items-center justify-center">读</div>
+              <div>
+                <div>阅读记录</div>
+                <div class="text-xs text-gray-400">清心阅读数据待整理</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold mb-4 text-cyan-200">今日提示</h2>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            Oneald 的首页不是展示页，而是家庭数字生活的入口。
+            先用静态数据搭建结构，后续逐步接入真实应用、旅行和时间记录。
+          </p>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- 底部时间轴 -->
+    <section class="glass rounded-2xl p-5 mt-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold text-cyan-200">最近记录</h2>
+        <a href="timeline.html" class="text-sm text-cyan-300 hover:text-white">查看时间轴</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+        <div class="border-l-2 border-cyan-400 pl-4">
+          <div class="text-white">首页数字大屏升级</div>
+          <div class="text-gray-400 mt-1">Oneald 1.0</div>
+        </div>
+
+        <div class="border-l-2 border-blue-400 pl-4">
+          <div class="text-white">家庭页入口修复</div>
+          <div class="text-gray-400 mt-1">family.html</div>
+        </div>
+
+        <div class="border-l-2 border-amber-300 pl-4">
+          <div class="text-white">旅行模块规划</div>
+          <div class="text-gray-400 mt-1">travel.html</div>
+        </div>
+
+        <div class="border-l-2 border-green-400 pl-4">
+          <div class="text-white">应用数据待接入</div>
+          <div class="text-gray-400 mt-1">apps.html</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
 </body>
 </html>
