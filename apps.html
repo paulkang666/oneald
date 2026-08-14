@@ -1,20 +1,100 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>应用 - Oneald Family OS</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-950 text-white min-h-screen">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <nav class="flex flex-col md:flex-row md:justify-between md:items-center px-6 md:px-10 py-5 border-b border-cyan-900/50 bg-slate-950/90">
+  <title>应用 - Oneald Family OS</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(251, 191, 36, 0.10), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #000000 100%);
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      box-shadow: 0 0 28px rgba(14, 165, 233, 0.13);
+      backdrop-filter: blur(12px);
+    }
+
+    .soft-glow {
+      box-shadow: 0 0 32px rgba(56, 189, 248, 0.22);
+    }
+
+    .pulse-dot {
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% {
+        opacity: .45;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+
+    .float-card {
+      animation: floatCard 7s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .app-core {
+      background:
+        linear-gradient(rgba(2, 6, 23, 0.18), rgba(2, 6, 23, 0.8)),
+        radial-gradient(circle at 30% 35%, rgba(56, 189, 248, 0.65), transparent 9%),
+        radial-gradient(circle at 68% 45%, rgba(251, 191, 36, 0.45), transparent 8%),
+        radial-gradient(circle at 48% 72%, rgba(34, 197, 94, 0.42), transparent 7%),
+        linear-gradient(135deg, #0f172a, #075985, #0f172a);
+    }
+
+    .scan-line {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(56, 189, 248, 0.6),
+        transparent
+      );
+      animation: scan 4s linear infinite;
+    }
+
+    @keyframes scan {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+  </style>
+</head>
+
+<body class="text-white min-h-screen overflow-x-hidden">
+
+  <!-- 导航 -->
+  <nav class="flex flex-col md:flex-row md:justify-between md:items-center px-6 md:px-10 py-5 border-b border-cyan-900/50 glass">
     <div>
-      <div class="text-2xl font-bold">Oneald Family OS</div>
-      <div class="text-xs text-cyan-300 mt-1">家庭应用与 PWA 数据中心</div>
+      <div class="text-2xl font-bold tracking-wide">Oneald Family OS</div>
+      <div class="text-xs text-cyan-300 mt-1">家庭应用 · PWA · 小程序 · 工具生态</div>
     </div>
 
-    <div class="flex gap-5 md:gap-8 text-gray-300 mt-4 md:mt-0">
+    <div class="flex flex-wrap gap-5 md:gap-8 text-gray-300 mt-4 md:mt-0">
       <a href="index.html" class="hover:text-white">首页</a>
       <a href="family.html" class="hover:text-white">家庭</a>
       <a href="apps.html" class="text-white">应用</a>
@@ -23,68 +103,340 @@
     </div>
   </nav>
 
-  <main class="px-6 md:px-10 py-10">
-    <section class="mb-10">
-      <p class="text-cyan-300 text-sm mb-2">APPS CENTER</p>
-      <h1 class="text-4xl md:text-5xl font-bold">应用数据中心</h1>
-      <p class="text-gray-400 mt-4 max-w-2xl">
-        这里集中管理 Oneald 相关的小程序、PWA、工具和家庭数字服务。
+  <main class="px-4 md:px-8 py-6">
+
+    <!-- 标题 -->
+    <section class="text-center mb-8">
+      <div class="inline-flex items-center gap-3 text-cyan-300 text-sm mb-3">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></span>
+        <span>APPLICATION CONTROL CENTER</span>
+        <span class="w-2 h-2 rounded-full bg-amber-300 pulse-dot"></span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold tracking-wide">
+        应用数据中心
+      </h1>
+
+      <p class="text-gray-400 mt-4 max-w-2xl mx-auto leading-relaxed">
+        这里集中管理 Oneald 相关的小程序、PWA、家庭工具、阅读系统、旅行记录与后续扩展应用。
       </p>
     </section>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-5">
-        <div class="text-gray-400 text-sm">应用数量</div>
+    <!-- 总览数据 -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">应用数量</div>
         <div class="text-4xl font-bold mt-2">12</div>
+        <div class="text-xs text-gray-400 mt-1">规划内工具</div>
       </div>
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-5">
-        <div class="text-gray-400 text-sm">本月使用</div>
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">本月使用</div>
         <div class="text-4xl font-bold mt-2">72</div>
+        <div class="text-xs text-gray-400 mt-1">累计打开次数</div>
       </div>
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-5">
-        <div class="text-gray-400 text-sm">运行中</div>
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">运行中</div>
         <div class="text-4xl font-bold mt-2">4</div>
+        <div class="text-xs text-gray-400 mt-1">核心模块</div>
       </div>
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-5">
-        <div class="text-gray-400 text-sm">待接入</div>
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">待接入</div>
         <div class="text-4xl font-bold mt-2">8</div>
+        <div class="text-xs text-gray-400 mt-1">后续扩展</div>
       </div>
     </section>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <!-- 主体驾驶舱 -->
+    <section class="grid grid-cols-1 xl:grid-cols-5 gap-5">
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-6">
-        <div class="text-cyan-300 text-sm mb-2">旅行类</div>
-        <h2 class="text-2xl font-bold">快乐一窝旅行记</h2>
-        <p class="text-gray-400 mt-3">记录家庭旅行、路线、照片、视频和旅程故事。</p>
-        <div class="mt-5 text-sm text-gray-300">本月使用：18 次</div>
-      </div>
+      <!-- 左侧 -->
+      <aside class="xl:col-span-1 space-y-5">
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-6">
-        <div class="text-cyan-300 text-sm mb-2">阅读类</div>
-        <h2 class="text-2xl font-bold">清心阅读</h2>
-        <p class="text-gray-400 mt-3">沉淀阅读记录、文章笔记、学习内容与家庭知识资产。</p>
-        <div class="mt-5 text-sm text-gray-300">本月阅读：42 篇</div>
-      </div>
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">应用使用趋势</h2>
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-6">
-        <div class="text-cyan-300 text-sm mb-2">记录类</div>
-        <h2 class="text-2xl font-bold">家庭时间轴</h2>
-        <p class="text-gray-400 mt-3">记录重要事件、家庭节点、成长轨迹和长期记忆。</p>
-        <div class="mt-5 text-sm text-gray-300">新增记录：12 条</div>
-      </div>
+          <div class="space-y-4 text-sm">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>旅行记录</span>
+                <span class="text-cyan-300">18 次</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-cyan-400 rounded-full" style="width: 78%;"></div>
+              </div>
+            </div>
 
-      <div class="bg-slate-900 border border-cyan-900/40 rounded-2xl p-6">
-        <div class="text-cyan-300 text-sm mb-2">系统类</div>
-        <h2 class="text-2xl font-bold">Oneald 1.0</h2>
-        <p class="text-gray-400 mt-3">家庭数字资产系统入口，连接应用、旅行、成员与时间记录。</p>
-        <div class="mt-5 text-sm text-green-400">状态：运行中</div>
-      </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>清心阅读</span>
+                <span class="text-amber-300">42 篇</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-amber-300 rounded-full" style="width: 62%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>时间轴</span>
+                <span class="text-blue-300">12 条</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-blue-400 rounded-full" style="width: 46%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">系统状态</h2>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <span class="text-gray-300">Oneald 1.0</span>
+              <span class="text-green-400">运行中</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-300">静态页面</span>
+              <span class="text-cyan-300">已部署</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-300">真实数据</span>
+              <span class="text-amber-300">待接入</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-300">PWA 能力</span>
+              <span class="text-blue-300">规划中</span>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- 中间 -->
+      <section class="xl:col-span-3 glass rounded-2xl p-4 soft-glow">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-xl font-bold text-cyan-200">Oneald 应用生态</h2>
+            <p class="text-sm text-gray-400 mt-1">
+              以家庭为中心，把工具、内容、旅行和时间记录连接起来。
+            </p>
+          </div>
+
+          <div class="text-xs text-gray-400">
+            当前模式：静态应用控制台
+          </div>
+        </div>
+
+        <div class="relative h-96 md:h-[520px] rounded-xl overflow-hidden app-core float-card">
+
+          <div class="absolute top-0 left-0 w-full h-1 scan-line"></div>
+
+          <!-- SVG 网络图 -->
+          <svg class="absolute inset-0 w-full h-full opacity-80" viewBox="0 0 1000 600" preserveAspectRatio="none">
+
+            <line x1="500" y1="300" x2="220" y2="170" stroke="rgba(34,211,238,0.55)" stroke-width="3" />
+            <line x1="500" y1="300" x2="780" y2="170" stroke="rgba(251,191,36,0.45)" stroke-width="3" />
+            <line x1="500" y1="300" x2="250" y2="430" stroke="rgba(59,130,246,0.55)" stroke-width="3" />
+            <line x1="500" y1="300" x2="750" y2="430" stroke="rgba(34,197,94,0.45)" stroke-width="3" />
+
+            <circle cx="500" cy="300" r="78" fill="rgba(14,165,233,0.18)" stroke="rgba(34,211,238,0.9)" stroke-width="3" />
+            <circle cx="220" cy="170" r="52" fill="rgba(14,165,233,0.16)" stroke="rgba(34,211,238,0.8)" stroke-width="2" />
+            <circle cx="780" cy="170" r="52" fill="rgba(251,191,36,0.13)" stroke="rgba(251,191,36,0.75)" stroke-width="2" />
+            <circle cx="250" cy="430" r="52" fill="rgba(59,130,246,0.14)" stroke="rgba(96,165,250,0.8)" stroke-width="2" />
+            <circle cx="750" cy="430" r="52" fill="rgba(34,197,94,0.12)" stroke="rgba(74,222,128,0.75)" stroke-width="2" />
+
+          </svg>
+
+          <!-- 节点文字 -->
+          <div class="absolute inset-0">
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+              <div class="text-xs text-cyan-200">CORE</div>
+              <div class="text-2xl md:text-4xl font-bold">Oneald</div>
+              <div class="text-xs text-gray-300 mt-1">家庭系统入口</div>
+            </div>
+
+            <div class="absolute left-[15%] top-[24%] text-center">
+              <div class="text-lg font-bold">旅行记</div>
+              <div class="text-xs text-gray-300">路线 / 照片 / 视频</div>
+            </div>
+
+            <div class="absolute right-[14%] top-[24%] text-center">
+              <div class="text-lg font-bold">清心阅读</div>
+              <div class="text-xs text-gray-300">文章 / 笔记 / 知识</div>
+            </div>
+
+            <div class="absolute left-[16%] bottom-[22%] text-center">
+              <div class="text-lg font-bold">时间轴</div>
+              <div class="text-xs text-gray-300">事件 / 成长 / 记录</div>
+            </div>
+
+            <div class="absolute right-[15%] bottom-[22%] text-center">
+              <div class="text-lg font-bold">家庭档案</div>
+              <div class="text-xs text-gray-300">成员 / 关系 / 记忆</div>
+            </div>
+          </div>
+
+          <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-3 text-center text-xs">
+            <div class="bg-black/40 rounded-lg p-3">
+              <div class="text-lg font-bold">4</div>
+              <div class="text-gray-300">核心模块</div>
+            </div>
+            <div class="bg-black/40 rounded-lg p-3">
+              <div class="text-lg font-bold">8</div>
+              <div class="text-gray-300">待扩展</div>
+            </div>
+            <div class="bg-black/40 rounded-lg p-3">
+              <div class="text-lg font-bold">1.0</div>
+              <div class="text-gray-300">当前版本</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 右侧 -->
+      <aside class="xl:col-span-1 space-y-5">
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">待接入能力</h2>
+
+          <div class="space-y-4 text-sm">
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="flex justify-between">
+                <span>真实数据</span>
+                <span class="text-amber-300">优先</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">
+                后续把页面里的占位数字替换为真实记录。
+              </p>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="flex justify-between">
+                <span>PWA 安装</span>
+                <span class="text-cyan-300">规划中</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">
+                让 Oneald 可以像 App 一样打开。
+              </p>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/40">
+              <div class="flex justify-between">
+                <span>照片视频</span>
+                <span class="text-green-300">后续</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">
+                为旅行和家庭记忆接入真实素材。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">建设顺序</h2>
+
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex gap-2">
+              <span class="text-cyan-300">01</span>
+              <span>统一页面风格</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-cyan-300">02</span>
+              <span>整理真实内容结构</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-cyan-300">03</span>
+              <span>接入照片、旅行和阅读数据</span>
+            </li>
+          </ul>
+        </div>
+
+      </aside>
 
     </section>
+
+    <!-- 应用卡片 -->
+    <section class="mt-6 glass rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+        <div>
+          <h2 class="text-xl font-bold text-cyan-200">应用档案</h2>
+          <p class="text-sm text-gray-400 mt-1">
+            先搭应用结构，后续每个应用都可以独立成一个子系统。
+          </p>
+        </div>
+
+        <a href="index.html" class="text-sm text-cyan-300 hover:text-white">
+          返回首页 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+
+        <article class="bg-slate-900/80 rounded-2xl overflow-hidden border border-cyan-900/40">
+          <div class="h-32 bg-gradient-to-br from-cyan-900 via-blue-800 to-slate-950"></div>
+          <div class="p-5">
+            <div class="text-xs text-cyan-300 mb-2">TRAVEL APP</div>
+            <h3 class="text-xl font-bold">快乐一窝旅行记</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              家庭旅行、路线、照片、视频和游记记录入口。
+            </p>
+            <a href="travel.html" class="inline-block mt-4 text-sm text-cyan-300 hover:text-white">
+              查看旅行 →
+            </a>
+          </div>
+        </article>
+
+        <article class="bg-slate-900/80 rounded-2xl overflow-hidden border border-cyan-900/40">
+          <div class="h-32 bg-gradient-to-br from-amber-800 via-orange-900 to-slate-950"></div>
+          <div class="p-5">
+            <div class="text-xs text-amber-300 mb-2">READING APP</div>
+            <h3 class="text-xl font-bold">清心阅读</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              阅读文章、笔记、知识沉淀和家庭学习资产。
+            </p>
+            <span class="inline-block mt-4 text-sm text-gray-500">
+              待创建
+            </span>
+          </div>
+        </article>
+
+        <article class="bg-slate-900/80 rounded-2xl overflow-hidden border border-cyan-900/40">
+          <div class="h-32 bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-950"></div>
+          <div class="p-5">
+            <div class="text-xs text-blue-300 mb-2">TIMELINE APP</div>
+            <h3 class="text-xl font-bold">家庭时间轴</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              家庭事件、成长记录、重要节点和长期记忆。
+            </p>
+            <a href="timeline.html" class="inline-block mt-4 text-sm text-cyan-300 hover:text-white">
+              查看时间轴 →
+            </a>
+          </div>
+        </article>
+
+        <article class="bg-slate-900/80 rounded-2xl overflow-hidden border border-cyan-900/40">
+          <div class="h-32 bg-gradient-to-br from-green-900 via-teal-800 to-slate-950"></div>
+          <div class="p-5">
+            <div class="text-xs text-green-300 mb-2">FAMILY APP</div>
+            <h3 class="text-xl font-bold">家庭档案</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              家庭成员、关系、共同记忆和身份档案。
+            </p>
+            <a href="family.html" class="inline-block mt-4 text-sm text-cyan-300 hover:text-white">
+              查看家庭 →
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
 </body>
