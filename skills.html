@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>技能工具库 - Oneald Family OS</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(168, 85, 247, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(34, 197, 94, 0.12), transparent 35%),
+        linear-gradient(180deg, #020617 0%, #000000 100%);
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, 0.74);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      box-shadow: 0 0 28px rgba(14, 165, 233, 0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .glass-purple {
+      background: rgba(30, 27, 75, 0.62);
+      border: 1px solid rgba(168, 85, 247, 0.26);
+      box-shadow: 0 0 24px rgba(168, 85, 247, 0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .glass-green {
+      background: rgba(6, 78, 59, 0.32);
+      border: 1px solid rgba(34, 197, 94, 0.26);
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.1);
+      backdrop-filter: blur(14px);
+    }
+
+    .pulse-dot {
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% {
+        opacity: .45;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+
+    .float-card {
+      animation: floatCard 7s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .skill-core {
+      background:
+        radial-gradient(circle, rgba(56, 189, 248, 0.32), transparent 58%),
+        radial-gradient(circle at 25% 20%, rgba(168, 85, 247, 0.26), transparent 32%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.95));
+    }
+  </style>
+</head>
+
+<body class="text-white min-h-screen overflow-x-hidden">
+
+  <!-- 导航 -->
+  <nav class="flex flex-col md:flex-row md:justify-between md:items-center px-6 md:px-10 py-5 border-b border-cyan-900/50 glass">
+    <div>
+      <div class="text-2xl font-bold tracking-wide">Oneald Family OS</div>
+      <div class="text-xs text-cyan-300 mt-1">技能工具库 · 数据接入 · 自动化能力 · AI 工作流</div>
+    </div>
+
+    <div class="flex flex-wrap gap-5 md:gap-8 text-gray-300 mt-4 md:mt-0">
+      <a href="index.html" class="hover:text-white">首页</a>
+      <a href="family.html" class="hover:text-white">家庭</a>
+      <a href="apps.html" class="hover:text-white">应用</a>
+      <a href="travel.html" class="hover:text-white">旅行</a>
+      <a href="skills.html" class="text-white">技能</a>
+      <a href="timeline.html" class="hover:text-white">时间轴</a>
+    </div>
+  </nav>
+
+  <main class="px-4 md:px-8 py-6">
+
+    <!-- 顶部标题 -->
+    <section class="text-center mb-8">
+      <div class="inline-flex items-center gap-3 text-cyan-300 text-sm mb-3">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></span>
+        <span>SKILL CENTER</span>
+        <span class="w-2 h-2 rounded-full bg-purple-400 pulse-dot"></span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold tracking-wide">
+        技能工具库
+      </h1>
+
+      <p class="text-gray-400 mt-4 max-w-3xl mx-auto leading-relaxed">
+        用来管理 Oneald Family OS 的所有能力模块：公众号同步、旅行小程序接入、照片视频导入、纸质照片数字化、AI 整理、备份归档与未来自动化工具。
+      </p>
+    </section>
+
+    <!-- 总览卡片 -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">已启用 Skill</div>
+        <div class="text-4xl font-bold mt-2">2</div>
+        <div class="text-xs text-gray-400 mt-1">当前可用能力</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">准备启用</div>
+        <div class="text-4xl font-bold mt-2">3</div>
+        <div class="text-xs text-gray-400 mt-1">近期上线</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">计划开发</div>
+        <div class="text-4xl font-bold mt-2">6</div>
+        <div class="text-xs text-gray-400 mt-1">未来能力池</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 text-center">
+        <div class="text-cyan-300 text-sm">数据通道</div>
+        <div class="text-4xl font-bold mt-2">4</div>
+        <div class="text-xs text-gray-400 mt-1">内容与资产入口</div>
+      </div>
+    </section>
+
+    <!-- 主体布局 -->
+    <section class="grid grid-cols-1 xl:grid-cols-5 gap-5">
+
+      <!-- 左栏：分类 -->
+      <aside class="xl:col-span-1 space-y-5">
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">Skill 分类</h2>
+
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between border-b border-slate-700 pb-2">
+              <span class="text-gray-300">内容同步</span>
+              <span class="text-cyan-300">2</span>
+            </div>
+
+            <div class="flex justify-between border-b border-slate-700 pb-2">
+              <span class="text-gray-300">旅行接入</span>
+              <span class="text-cyan-300">2</span>
+            </div>
+
+            <div class="flex justify-between border-b border-slate-700 pb-2">
+              <span class="text-gray-300">照片视频</span>
+              <span class="text-cyan-300">3</span>
+            </div>
+
+            <div class="flex justify-between border-b border-slate-700 pb-2">
+              <span class="text-gray-300">AI 整理</span>
+              <span class="text-purple-300">2</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span class="text-gray-300">备份归档</span>
+              <span class="text-green-300">2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-purple rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-purple-200 mb-4">优先级</h2>
+
+          <div class="space-y-4 text-sm">
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>公众号同步</span>
+                <span class="text-green-300">已启动</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-green-400 rounded-full" style="width: 70%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>旅游小程序</span>
+                <span class="text-amber-300">8/22</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-amber-300 rounded-full" style="width: 45%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-1">
+                <span>照片视频导入</span>
+                <span class="text-cyan-300">规划中</span>
+              </div>
+              <div class="h-2 bg-slate-800 rounded-full">
+                <div class="h-2 bg-cyan-400 rounded-full" style="width: 28%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- 中间：能力核心 -->
+      <section class="xl:col-span-3 glass rounded-2xl p-5 grid-bg">
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+          <div>
+            <h2 class="text-xl font-bold text-cyan-200">Oneald Skill Core</h2>
+            <p class="text-sm text-gray-400 mt-1">这里不是简单工具列表，而是家庭数字系统的能力中枢。</p>
+          </div>
+
+          <div class="text-xs text-gray-400">
+            当前阶段：静态能力规划面板
+          </div>
+        </div>
+
+        <div class="skill-core rounded-2xl min-h-[520px] relative overflow-hidden p-6 float-card">
+
+          <!-- 背景网格球 -->
+          <div class="absolute inset-0 grid-bg opacity-40"></div>
+
+          <!-- 中心核心 -->
+          <div class="relative z-10 flex items-center justify-center min-h-[460px]">
+            <div class="relative w-full max-w-3xl">
+
+              <div class="mx-auto w-44 h-44 rounded-full border border-cyan-300/40 bg-cyan-950/60 flex flex-col items-center justify-center shadow-2xl shadow-cyan-500/20">
+                <div class="text-xs text-cyan-300 mb-2">CORE</div>
+                <div class="text-3xl font-bold">Skill</div>
+                <div class="text-xs text-gray-400 mt-2">能力中枢</div>
+              </div>
+
+              <!-- 环绕卡片 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+
+                <div class="bg-black/35 border border-cyan-500/30 rounded-2xl p-4">
+                  <div class="text-cyan-300 text-xs mb-2">CONTENT</div>
+                  <h3 class="font-bold">康波聊快消同步</h3>
+                  <p class="text-xs text-gray-400 mt-2">
+                    每周 3 篇公众号内容，可逐步沉淀为文章库、观点库和内容资产。
+                  </p>
+                </div>
+
+                <div class="bg-black/35 border border-amber-500/30 rounded-2xl p-4">
+                  <div class="text-amber-300 text-xs mb-2">TRAVEL</div>
+                  <h3 class="font-bold">旅行小程序接入</h3>
+                  <p class="text-xs text-gray-400 mt-2">
+                    夏威夷与北极行程测试，可连接旅行页、大屏和时间轴。
+                  </p>
+                </div>
+
+                <div class="bg-black/35 border border-green-500/30 rounded-2xl p-4">
+                  <div class="text-green-300 text-xs mb-2">MEDIA</div>
+                  <h3 class="font-bold">百度网盘照片视频导入</h3>
+                  <p class="text-xs text-gray-400 mt-2">
+                    未来作为家庭照片、视频、旅行素材的主要导入通道。
+                  </p>
+                </div>
+
+                <div class="bg-black/35 border border-purple-500/30 rounded-2xl p-4">
+                  <div class="text-purple-300 text-xs mb-2">AI</div>
+                  <h3 class="font-bold">AI 整理与归档</h3>
+                  <p class="text-xs text-gray-400 mt-2">
+                    用 AI 对照片、文章、视频、人物、地点、时间进行结构化整理。
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右栏：接入状态 -->
+      <aside class="xl:col-span-1 space-y-5">
+
+        <div class="glass rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-cyan-200 mb-4">数据接入通道</h2>
+
+          <div class="space-y-4 text-sm">
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-green-900/50">
+              <div class="flex justify-between">
+                <span>公众号</span>
+                <span class="text-green-300">运行中</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">康波聊快消，每周 3 篇，已有关注产生。</p>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-amber-900/50">
+              <div class="flex justify-between">
+                <span>旅游小程序</span>
+                <span class="text-amber-300">8/22</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">夏威夷、北极两个行程测试入口。</p>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-cyan-900/50">
+              <div class="flex justify-between">
+                <span>百度网盘</span>
+                <span class="text-cyan-300">计划中</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">照片、视频、家庭素材批量导入。</p>
+            </div>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-purple-900/50">
+              <div class="flex justify-between">
+                <span>纸质照片</span>
+                <span class="text-purple-300">待开发</span>
+              </div>
+              <p class="text-gray-400 text-xs mt-2">扫描、识别、修复、归档与人物标注。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-green rounded-2xl p-5">
+          <h2 class="text-lg font-bold text-green-200 mb-4">系统原则</h2>
+
+          <ul class="space-y-3 text-sm text-gray-300">
+            <li class="flex gap-2">
+              <span class="text-green-300">01</span>
+              <span>先接入真实业务，再逐步自动化。</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-green-300">02</span>
+              <span>每个 Skill 都要能服务首页大屏。</span>
+            </li>
+            <li class="flex gap-2">
+              <span class="text-green-300">03</span>
+              <span>数据先结构化，后面才好 AI 化。</span>
+            </li>
+          </ul>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- Skill 列表 -->
+    <section class="mt-6 grid grid-cols-1 xl:grid-cols-3 gap-5">
+
+      <!-- 已启用 -->
+      <div class="glass rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-green-200">已启用 Skill</h2>
+          <span class="text-xs text-green-300 bg-green-950/50 px-3 py-1 rounded-full">ACTIVE</span>
+        </div>
+
+        <div class="space-y-4">
+
+          <article class="bg-slate-900/80 border border-green-900/40 rounded-2xl p-4">
+            <div class="text-xs text-green-300 mb-2">内容同步</div>
+            <h3 class="text-lg font-bold">康波聊快消公众号运营</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              已开始正常发送，每周 3 篇，已有初步关注产生。
+            </p>
+            <div class="mt-4 text-xs text-gray-500">目标：沉淀为内容资产和观点数据库</div>
+          </article>
+
+          <article class="bg-slate-900/80 border border-green-900/40 rounded-2xl p-4">
+            <div class="text-xs text-green-300 mb-2">网站系统</div>
+            <h3 class="text-lg font-bold">Oneald Family OS 静态大屏</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              首页、家庭、应用、旅行、时间轴、技能中心正在搭建。
+            </p>
+            <div class="mt-4 text-xs text-gray-500">目标：统一为家庭数字资产总入口</div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 准备启用 -->
+      <div class="glass rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-amber-200">准备启用 Skill</h2>
+          <span class="text-xs text-amber-300 bg-amber-950/50 px-3 py-1 rounded-full">NEXT</span>
+        </div>
+
+        <div class="space-y-4">
+
+          <article class="bg-slate-900/80 border border-amber-900/40 rounded-2xl p-4">
+            <div class="text-xs text-amber-300 mb-2">旅行接入</div>
+            <h3 class="text-lg font-bold">夏威夷行程小程序</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              计划 8 月 22 日启用，用于旅行行程、路线和素材测试。
+            </p>
+            <div class="mt-4 text-xs text-gray-500">接入位置：旅行页、首页大屏、时间轴</div>
+          </article>
+
+          <article class="bg-slate-900/80 border border-amber-900/40 rounded-2xl p-4">
+            <div class="text-xs text-amber-300 mb-2">旅行接入</div>
+            <h3 class="text-lg font-bold">北极行程小程序</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              计划 8 月 22 日启用，用于第二条旅行路线测试。
+            </p>
+            <div class="mt-4 text-xs text-gray-500">接入位置：旅行页、应用页、时间轴</div>
+          </article>
+
+          <article class="bg-slate-900/80 border border-amber-900/40 rounded-2xl p-4">
+            <div class="text-xs text-amber-300 mb-2">资产导入</div>
+            <h3 class="text-lg font-bold">百度网盘照片视频导入</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              用于导入大量家庭照片、视频和旅行素材。
+            </p>
+            <div class="mt-4 text-xs text-gray-500">目标：形成家庭媒体资产库</div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- 计划开发 -->
+      <div class="glass rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold text-purple-200">计划开发 Skill</h2>
+          <span class="text-xs text-purple-300 bg-purple-950/50 px-3 py-1 rounded-full">ROADMAP</span>
+        </div>
+
+        <div class="space-y-4">
+
+          <article class="bg-slate-900/80 border border-purple-900/40 rounded-2xl p-4">
+            <div class="text-xs text-purple-300 mb-2">照片数字化</div>
+            <h3 class="text-lg font-bold">纸质照片导入 Skill</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              用于扫描老照片、修复画质、识别人脸、标注时间地点并归档。
+            </p>
+          </article>
+
+          <article class="bg-slate-900/80 border border-purple-900/40 rounded-2xl p-4">
+            <div class="text-xs text-purple-300 mb-2">AI 整理</div>
+            <h3 class="text-lg font-bold">照片自动分类 Skill</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              根据人物、地点、时间、事件，把照片归入家庭、旅行、成长等主题。
+            </p>
+          </article>
+
+          <article class="bg-slate-900/80 border border-purple-900/40 rounded-2xl p-4">
+            <div class="text-xs text-purple-300 mb-2">内容资产</div>
+            <h3 class="text-lg font-bold">公众号文章归档 Skill</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              把公众号文章同步到网站，形成可检索、可复用的知识资产库。
+            </p>
+          </article>
+
+          <article class="bg-slate-900/80 border border-purple-900/40 rounded-2xl p-4">
+            <div class="text-xs text-purple-300 mb-2">视频资产</div>
+            <h3 class="text-lg font-bold">家庭视频整理 Skill</h3>
+            <p class="text-sm text-gray-400 mt-2">
+              对视频进行旅程、人物、时间、地点和片段级归档。
+            </p>
+          </article>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 底部路线 -->
+    <section class="mt-6 glass rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+        <div>
+          <h2 class="text-xl font-bold text-cyan-200">近期接入路线</h2>
+          <p class="text-sm text-gray-400 mt-1">
+            先把真实正在发生的业务接入大屏，再逐步把能力自动化。
+          </p>
+        </div>
+
+        <a href="apps.html" class="text-sm text-cyan-300 hover:text-white">
+          查看应用中心 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+
+        <div class="bg-slate-900/80 border border-cyan-900/40 rounded-2xl p-4">
+          <div class="text-cyan-300 text-xs mb-2">STEP 01</div>
+          <h3 class="font-bold">菜单接入技能中心</h3>
+          <p class="text-gray-400 mt-2">把 skills.html 加入全站导航。</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-green-900/40 rounded-2xl p-4">
+          <div class="text-green-300 text-xs mb-2">STEP 02</div>
+          <h3 class="font-bold">公众号模块接入首页</h3>
+          <p class="text-gray-400 mt-2">在首页大屏显示公众号更新状态。</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-amber-900/40 rounded-2xl p-4">
+          <div class="text-amber-300 text-xs mb-2">STEP 03</div>
+          <h3 class="font-bold">旅行小程序接入旅行页</h3>
+          <p class="text-gray-400 mt-2">为夏威夷、北极行程预留入口。</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-purple-900/40 rounded-2xl p-4">
+          <div class="text-purple-300 text-xs mb-2">STEP 04</div>
+          <h3 class="font-bold">照片视频资产导入</h3>
+          <p class="text-gray-400 mt-2">建立百度网盘和纸质照片导入规划。</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
