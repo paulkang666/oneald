@@ -1,12 +1,131 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>夏威夷小程序 - Oneald Family OS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏威夷旅行 - Oneald Family OS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1>夏威夷小程序</h1>
-  <p>这里是夏威夷小程序项目详情页。</p>
-  <a href="apps.html">返回应用页</a>
+
+<body class="min-h-screen bg-slate-950 text-slate-100">
+  <!-- 背景光效 -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute top-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl"></div>
+  </div>
+
+  <!-- 顶部导航 -->
+  <header class="border-b border-white/10 bg-slate-950/70 backdrop-blur">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="index.html" class="text-lg font-bold tracking-wide">
+        Oneald Family OS
+      </a>
+
+      <nav class="hidden gap-6 text-sm text-slate-300 md:flex">
+        <a href="index.html" class="hover:text-white">首页</a>
+        <a href="family.html" class="hover:text-white">家庭</a>
+        <a href="apps.html" class="hover:text-white">应用</a>
+        <a href="travel.html" class="hover:text-white">旅行</a>
+        <a href="skills.html" class="hover:text-white">技能</a>
+        <a href="timeline.html" class="hover:text-white">时间轴</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主体 -->
+  <main class="mx-auto max-w-6xl px-6 py-12">
+    <!-- 返回 -->
+    <a href="apps.html" class="mb-8 inline-flex items-center text-sm text-sky-300 hover:text-white">
+      ← 返回应用中心
+    </a>
+
+    <!-- Hero -->
+    <section class="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-sky-950/30">
+      <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+        <div>
+          <div class="mb-4 inline-flex rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-1 text-sm text-sky-200">
+            Family Travel Project · Hawaii
+          </div>
+
+          <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
+            夏威夷旅行
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+            用于整理夏威夷家庭旅行的目的地、酒店、海滩、亲子活动、预算清单和行程规划。
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-sky-300/20 bg-slate-900/80 p-6 text-center">
+          <div class="text-5xl">🌺</div>
+          <div class="mt-3 text-sm text-slate-400">Project Status</div>
+          <div class="mt-1 text-xl font-semibold text-sky-200">Planning</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 内容卡片 -->
+    <section class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-xl font-semibold text-sky-200">项目定位</h2>
+        <p class="mt-3 leading-7 text-slate-300">
+          一个面向家庭出行的夏威夷旅行资料页，用来沉淀岛屿选择、住宿方案、交通方式和亲子体验。
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-xl font-semibold text-orange-200">核心内容</h2>
+        <ul class="mt-3 space-y-2 text-slate-300">
+          <li>• 岛屿与区域选择</li>
+          <li>• 酒店与民宿收藏</li>
+          <li>• 海滩与亲子活动</li>
+          <li>• 预算与行程清单</li>
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-xl font-semibold text-cyan-200">下一步计划</h2>
+        <p class="mt-3 leading-7 text-slate-300">
+          先完成目的地框架，再逐步补充真实酒店、航班、租车、餐厅和家庭活动资料。
+        </p>
+      </div>
+    </section>
+
+    <!-- 项目路线 -->
+    <section class="mt-10 rounded-3xl border border-white/10 bg-white/5 p-8">
+      <h2 class="text-2xl font-bold">建设路线</h2>
+
+      <div class="mt-6 space-y-5">
+        <div class="rounded-2xl bg-slate-900/70 p-5">
+          <div class="text-sm text-sky-300">Step 01</div>
+          <h3 class="mt-1 text-lg font-semibold">建立旅行详情页</h3>
+          <p class="mt-2 text-slate-400">
+            完成夏威夷旅行项目的介绍页面、页面结构和视觉设计。
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-900/70 p-5">
+          <div class="text-sm text-sky-300">Step 02</div>
+          <h3 class="mt-1 text-lg font-semibold">整理目的地资料</h3>
+          <p class="mt-2 text-slate-400">
+            收集岛屿、酒店、海滩、餐厅、亲子活动、租车和预算资料。
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-slate-900/70 p-5">
+          <div class="text-sm text-sky-300">Step 03</div>
+          <h3 class="mt-1 text-lg font-semibold">形成家庭旅行手册</h3>
+          <p class="mt-2 text-slate-400">
+            把资料整理成可复用的家庭旅行计划、清单和回忆记录。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
+    Oneald Family OS · Hawaii Family Travel Project
+  </footer>
 </body>
 </html>
