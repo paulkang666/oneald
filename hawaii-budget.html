@@ -3,73 +3,334 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>预算与行程清单 - 夏威夷旅行</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen bg-slate-950 text-slate-100">
+  <!-- 背景光效 -->
   <div class="fixed inset-0 -z-10">
     <div class="absolute top-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-sky-500/20 blur-3xl"></div>
     <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-orange-500/10 blur-3xl"></div>
   </div>
 
-  <header class="border-b border-white/10 bg-slate-950/70 backdrop-blur">
+  <!-- 顶部导航 -->
+  <header class="border-b border-white/10 bg-slate-950/80 backdrop-blur">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="index.html" class="text-lg font-bold">Oneald Family OS</a>
+      <a href="index.html" class="text-lg font-bold tracking-wide">
+        Oneald Family OS
+      </a>
+
       <nav class="hidden gap-6 text-sm text-slate-300 md:flex">
         <a href="index.html" class="hover:text-white">首页</a>
         <a href="apps.html" class="hover:text-white">应用</a>
-        <a href="hawaii.html" class="text-white">夏威夷</a>
+        <a href="hawaii.html" class="font-semibold text-white">夏威夷</a>
       </nav>
     </div>
   </header>
 
+  <!-- 主体 -->
   <main class="mx-auto max-w-6xl px-6 py-12">
     <a href="hawaii.html" class="mb-8 inline-flex text-sm text-sky-300 hover:text-white">
       ← 返回夏威夷旅行
     </a>
 
-    <section class="rounded-3xl border border-white/10 bg-white/5 p-8">
-      <div class="mb-4 inline-flex rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1 text-sm text-emerald-200">
+    <!-- Hero -->
+    <section class="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-sky-950/30">
+      <div class="mb-4 inline-flex rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-1 text-sm text-orange-200">
         Hawaii Travel · Budget
       </div>
 
-      <h1 class="text-4xl font-bold md:text-6xl">
+      <h1 class="text-4xl font-bold tracking-tight md:text-6xl">
         预算与行程清单
       </h1>
 
       <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
-        用于整理夏威夷旅行预算、每日行程、出发前准备和家庭打包清单。
+        用来估算夏威夷家庭旅行的总预算、人均预算，并整理出行前需要准备的事项。
       </p>
     </section>
 
-    <section class="mt-10 grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h2 class="text-2xl font-bold text-sky-200">预算分类</h2>
-        <ul class="mt-3 space-y-2 text-slate-300">
-          <li>• 机票</li>
-          <li>• 酒店</li>
-          <li>• 租车</li>
-          <li>• 餐饮</li>
-          <li>• 门票与活动</li>
-        </ul>
+    <!-- 预算计算器 -->
+    <section class="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+      <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 class="text-2xl font-bold">旅行预算计算器</h2>
+          <p class="mt-2 text-sm text-slate-400">
+            输入各项预计费用，页面会自动计算总预算和人均预算。
+          </p>
+        </div>
+
+        <button
+          onclick="resetBudget()"
+          class="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 hover:bg-white/10 hover:text-white"
+        >
+          清空金额
+        </button>
       </div>
 
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h2 class="text-2xl font-bold text-orange-200">出行清单</h2>
-        <ul class="mt-3 space-y-2 text-slate-300">
-          <li>• 护照 / 证件</li>
-          <li>• 防晒用品</li>
-          <li>• 泳衣 / 沙滩鞋</li>
-          <li>• 儿童用品</li>
-          <li>• 充电器 / 相机</li>
-        </ul>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        <label class="block">
+          <span class="text-sm text-slate-300">出行人数</span>
+          <input
+            id="people"
+            type="number"
+            min="1"
+            value="4"
+            oninput="calculateBudget()"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">旅行天数</span>
+          <input
+            id="days"
+            type="number"
+            min="1"
+            value="7"
+            oninput="calculateBudget()"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">机票总额</span>
+          <input
+            id="flight"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 2400"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">酒店 / 民宿总额</span>
+          <input
+            id="hotel"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 2800"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">租车 / 交通总额</span>
+          <input
+            id="car"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 700"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">餐饮总额</span>
+          <input
+            id="food"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 1000"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">门票 / 活动总额</span>
+          <input
+            id="activity"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 600"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-slate-300">购物 / 纪念品</span>
+          <input
+            id="shopping"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 500"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
+
+        <label class="block md:col-span-2">
+          <span class="text-sm text-slate-300">备用金</span>
+          <input
+            id="backup"
+            type="number"
+            min="0"
+            value="0"
+            oninput="calculateBudget()"
+            placeholder="例如 800"
+            class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none focus:border-sky-400"
+          />
+        </label>
       </div>
+
+      <!-- 结果 -->
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        <div class="rounded-3xl border border-sky-400/20 bg-sky-400/10 p-6">
+          <p class="text-sm text-sky-200">总预算</p>
+          <p id="totalBudget" class="mt-3 text-3xl font-bold">$0</p>
+        </div>
+
+        <div class="rounded-3xl border border-orange-400/20 bg-orange-400/10 p-6">
+          <p class="text-sm text-orange-200">人均预算</p>
+          <p id="perPersonBudget" class="mt-3 text-3xl font-bold">$0</p>
+        </div>
+
+        <div class="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-6">
+          <p class="text-sm text-emerald-200">日均家庭花费</p>
+          <p id="perDayBudget" class="mt-3 text-3xl font-bold">$0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行程准备清单 -->
+    <section class="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+      <h2 class="text-2xl font-bold">出发前清单</h2>
+      <p class="mt-2 text-sm text-slate-400">
+        可以用来检查夏威夷旅行前的重要准备事项。
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>确认机票和航班时间</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>确认酒店或民宿订单</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>确认租车或机场交通</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>准备驾照、证件和银行卡</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>准备防晒霜、泳衣、拖鞋</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>保存景点、餐厅和停车点</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>准备孩子用品和常用药</span>
+        </label>
+
+        <label class="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+          <input type="checkbox" class="h-5 w-5 accent-sky-400" />
+          <span>下载离线地图和确认手机网络</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- 预算建议 -->
+    <section class="mt-10 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+      <h2 class="text-2xl font-bold">预算提醒</h2>
+
+      <ul class="mt-5 space-y-3 leading-7 text-slate-300">
+        <li>• 夏威夷旅行住宿和租车通常是大头，建议优先锁定。</li>
+        <li>• 很多酒店可能会有停车费、度假村费和税费，预算里最好单独预留。</li>
+        <li>• 如果带孩子旅行，建议备用金稍微多留一些。</li>
+        <li>• 餐饮可以按“每天家庭总额”估算，会比逐餐记录更方便。</li>
+        <li>• 这个页面目前是本地计算，不会保存数据。刷新页面后输入内容会恢复默认。</li>
+      </ul>
     </section>
   </main>
 
+  <!-- 页脚 -->
   <footer class="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
     Oneald Family OS · Hawaii Budget
   </footer>
+
+  <script>
+    function getNumber(id) {
+      const element = document.getElementById(id);
+      const value = parseFloat(element.value);
+      if (isNaN(value) || value < 0) {
+        return 0;
+      }
+      return value;
+    }
+
+    function formatMoney(value) {
+      return "$" + value.toLocaleString("en-US", {
+        maximumFractionDigits: 0
+      });
+    }
+
+    function calculateBudget() {
+      const people = Math.max(getNumber("people"), 1);
+      const days = Math.max(getNumber("days"), 1);
+
+      const flight = getNumber("flight");
+      const hotel = getNumber("hotel");
+      const car = getNumber("car");
+      const food = getNumber("food");
+      const activity = getNumber("activity");
+      const shopping = getNumber("shopping");
+      const backup = getNumber("backup");
+
+      const total = flight + hotel + car + food + activity + shopping + backup;
+      const perPerson = total / people;
+      const perDay = total / days;
+
+      document.getElementById("totalBudget").textContent = formatMoney(total);
+      document.getElementById("perPersonBudget").textContent = formatMoney(perPerson);
+      document.getElementById("perDayBudget").textContent = formatMoney(perDay);
+    }
+
+    function resetBudget() {
+      const ids = [
+        "flight",
+        "hotel",
+        "car",
+        "food",
+        "activity",
+        "shopping",
+        "backup"
+      ];
+
+      ids.forEach(function(id) {
+        document.getElementById(id).value = 0;
+      });
+
+      calculateBudget();
+    }
+
+    calculateBudget();
+  </script>
 </body>
 </html>
